@@ -1,0 +1,1 @@
+The idea was to make a Raspberry Pi Pico become a keyboard, gamepad, MIDI and other possible option.

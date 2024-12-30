@@ -1,0 +1,5 @@
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Seeeduino XIAO RP2040 with rp2040
+Board ID:seeeduino_xiao_rp2040
+UID:4150323038323714
+boot.py output:
++ Enabled JoystickXL 0.4.1 with 8 axes, 128 buttons and 4 hats for a total of 26 report bytes.

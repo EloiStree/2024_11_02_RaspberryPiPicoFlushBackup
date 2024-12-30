@@ -1,0 +1,30 @@
+import time
+import usb_midi
+import adafruit_midi
+import board
+import digitalio
+
+from adafruit_midi.note_on import NoteOn
+from adafruit_midi.note_off import NoteOff
+
+midi = adafruit_midi.MIDI(midi_out=usb_midi.ports[1], out_channel=0)
+
+print("Midi test")
+print("Default output MIDI channel:", midi.out_channel + 1)
+
+button_pins = [digitalio.DigitalInOut(getattr(board, f'D{i}')) for i in range(11)]
+for pin in button_pins:
+    pin.direction = digitalio.Direction.INPUT
+    pin.pull = digitalio.Pull.UP
+
+while True:
+    time.sleep(0.001)
+    for i, pin in enumerate(button_pins):
+        if not pin.value:
+            midi.send(NoteOn(i+60, 120))  # map pin to MIDI note number
+            print(i+60);
+            time.sleep(0.25)
+            midi.send(NoteOff(i+60, 120))
+            print(i+60);
+            time.sleep(0.5)
+
